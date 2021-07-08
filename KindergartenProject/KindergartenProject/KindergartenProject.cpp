@@ -19,6 +19,49 @@ struct DATA
 	int YearOfChild;
 };
 
+void AdminMenu()
+{
+	int AdminMenuChoice;
+	cin >> AdminMenuChoice;
+
+	switch (AdminMenuChoice)
+	{
+	case 1:
+	{
+		cout << "Create" << endl;
+	}
+	case 2:
+	{
+		cout << "Register" << endl;
+	}
+	case 3:
+	{
+		cout << "Delete" << endl;
+	}
+	case 4:
+	{
+		cout << "Modify" << endl;
+	}
+	}
+}
+void MainMenu()
+{
+	int MainMenuChoice;
+	cin >> MainMenuChoice;
+
+	switch (MainMenuChoice)
+	{
+	case 1:
+	{
+		cout << "View data of child: " << endl;
+	}
+	case 2:
+	{
+		cout << "View data of parents: " << endl;
+	}
+	}
+}
+
 bool CheckIfAdmin(LOGINCREDENTIALS &LoginCreds)
 {
 	if (LoginCreds.Username == "a" && LoginCreds.Password == "a")
