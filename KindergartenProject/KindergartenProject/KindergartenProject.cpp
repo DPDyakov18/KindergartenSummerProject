@@ -47,17 +47,23 @@ void AdminMenu()
 void MainMenu()
 {
 	int MainMenuChoice;
+
+	cout << "Data of child: " << endl;
+	cout << "Data of parents: " << endl;
 	cin >> MainMenuChoice;
+
 
 	switch (MainMenuChoice)
 	{
 	case 1:
 	{
-		cout << "View data of child: " << endl;
+		cout << "Data of child: " << endl;
+		break;
 	}
 	case 2:
 	{
-		cout << "View data of parents: " << endl;
+		cout << "Data of parents: " << endl;
+		break;
 	}
 	}
 }
@@ -71,19 +77,27 @@ bool CheckIfAdmin(LOGINCREDENTIALS &LoginCreds)
 	return false;
 }
 
-void LoginRequest(LOGINCREDENTIALS &LoginCreds)
+void LoginRequest(LOGINCREDENTIALS& LoginCreds)
 {
-	cout << "Input username:"<<endl;
+	cout << "Enter Username: " << endl;
 	cin >> LoginCreds.Username;
-	cout << "Input password:" << endl;
+	cout << "Enter Password: " << endl;
 	cin >> LoginCreds.Password;
 }
 
 int main()
-{	
+{
 	LOGINCREDENTIALS LoginCreds[100];
-	int NumberOfLogins=0;
+	int NumberOfLogins = 0;
 	LoginRequest(LoginCreds[NumberOfLogins]);
-	cout << CheckIfAdmin(LoginCreds[NumberOfLogins]);
+
+	if (CheckIfAdmin(LoginCreds[NumberOfLogins]))
+	{
+		AdminMenu();
+	}
+	else
+	{
+		MainMenu();
+	}
 	NumberOfLogins++;
 }
