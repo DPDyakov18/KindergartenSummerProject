@@ -9,7 +9,7 @@ struct LOGINCREDENTIALS
 	string Password;
 };
 
-struct DATA
+struct USERDATA
 {
 	int Id;
 	string FirstName;
@@ -85,19 +85,64 @@ void LoginRequest(LOGINCREDENTIALS& LoginCreds)
 	cin >> LoginCreds.Password;
 }
 
-int main()
-{
-	LOGINCREDENTIALS LoginCreds[100];
-	int NumberOfLogins = 0;
-	LoginRequest(LoginCreds[NumberOfLogins]);
 
-	if (CheckIfAdmin(LoginCreds[NumberOfLogins]))
+void DeleteUser(int& NumberOfLogins, USERDATA UserData[])
+{
+	int TempId;
+	if (NumberOfLogins > 0)
 	{
-		AdminMenu();
+		cout << "All user's Ids:" << endl;
+		for (int i = 1; i <= NumberOfLogins; i++)
+		{
+			cout << UserData[i].Id << endl;
+		}
+		cout << endl;
+		cout << "Enter the Id you want to delete:";
+		cin >> TempId;
+		bool flag = false;
+
+		for (int i = 1; i <= NumberOfLogins; i++)
+		{
+			if (TempId == UserData[i].Id)
+			{
+				UserData[i] = UserData[i + 1];
+				flag = true;
+			}
+			if (flag == true)
+			{
+				NumberOfLogins--;
+				cout << "You have deleted user's info!";
+			}
+		}
+		if (flag != true)
+		{
+			cout << "You have entered wrong or non-existand id!" << endl;
+			cout << "Please enter new id!";
+			cout << endl;
+			cout << "Enter the id you want to delete:";
+			cin >> TempId;
+		}
 	}
 	else
 	{
-		MainMenu();
+		cout << "There aren't any customers!";
 	}
-	NumberOfLogins++;
+	cout << endl;
+}
+
+void ShowUserData(int& NumberOfLogins, USERDATA UserData[])
+{
+	cout << UserData[NumberOfLogins].Id;
+	cout << UserData[NumberOfLogins].FirstName;
+	cout << UserData[NumberOfLogins].LastName;
+	cout << UserData[NumberOfLogins].Address;
+	cout << UserData[NumberOfLogins].ChildName;
+	cout << UserData[NumberOfLogins].YearOfChild;
+}
+
+int main()
+{
+	LOGINCREDENTIALS LoginCreds[10];
+	USERDATA UsData[10];
+	int NumberOfLogins = 1;
 }
