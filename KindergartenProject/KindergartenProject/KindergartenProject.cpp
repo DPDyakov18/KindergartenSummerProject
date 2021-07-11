@@ -139,6 +139,56 @@ void ShowUserData(int& NumberOfLogins, USERDATA UserData[])
 	cout << UserData[NumberOfLogins].ChildName;
 	cout << UserData[NumberOfLogins].YearOfChild;
 }
+void ModifyUser(int& NumberOfLogins, USERDATA UserData[])
+{
+	int TempId;
+	if (NumberOfLogins > 0)
+	{
+		cout << "All user's Ids:" << endl;
+		for (int i = 1; i <= NumberOfLogins; i++)
+		{
+			cout << UserData[i].Id << endl;
+		}
+		cout << endl;
+		cout << "Enter the Id you want to Modify: ";
+		cin >> TempId;
+		bool flag = false;
+
+		for (int i = 1; i <= NumberOfLogins; i++)
+		{
+			if (TempId == UserData[i].Id)
+			{
+				cin >> UserData[i].Id;
+				cin >> UserData[i].FirstName;
+				cin >> UserData[i].LastName;
+				cin >> UserData[i].Address;
+				cin >> UserData[i].ChildName;
+				cin >> UserData[i].YearOfChild;
+				
+			}
+			if (flag == true)
+			{
+				NumberOfLogins--;
+				cout << "You have deleted user's info!";
+			}
+		}
+		
+		if (flag != true)
+		{
+			cout << "You have entered wrong or non-existand id!" << endl;
+			cout << "Please enter new id!";
+			cout << endl;
+			cout << "Enter the id you want to delete:";
+			cin >> TempId;
+		}
+	}
+	else
+	{
+		cout << "There aren't any customers!";
+	}
+	cout << endl;
+
+}
 
 int main()
 {
