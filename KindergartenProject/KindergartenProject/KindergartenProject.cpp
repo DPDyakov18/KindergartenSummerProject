@@ -77,6 +77,7 @@ bool CheckIfAdmin(LOGINCREDENTIALS &LoginCreds)
 	return false;
 }
 
+
 void LoginRequest(LOGINCREDENTIALS& LoginCreds)
 {
 	cout << "Enter Username: " << endl;
@@ -130,15 +131,33 @@ void DeleteUser(int& NumberOfLogins, USERDATA UserData[])
 	cout << endl;
 }
 
-void ShowUserData(int& NumberOfLogins, USERDATA UserData[])
+void InputUserData(int& NumberOfLogins, USERDATA UserData[], LOGINCREDENTIALS LoginCreds[])
 {
-	cout << UserData[NumberOfLogins].Id;
-	cout << UserData[NumberOfLogins].FirstName;
-	cout << UserData[NumberOfLogins].LastName;
-	cout << UserData[NumberOfLogins].Address;
-	cout << UserData[NumberOfLogins].ChildName;
-	cout << UserData[NumberOfLogins].YearOfChild;
+	cout << "Enter data for the user: " << endl;
+	cout << "Enter username: " << endl;
+	cin >> LoginCreds[NumberOfLogins].Username;
+	cout << "Enter password: " << endl;
+	cin >> LoginCreds[NumberOfLogins].Password;
+	cout << "Enter id: " << endl;
+	cin >> UserData[NumberOfLogins].Id;
+	cout << "Enter first name: " << endl;
+	cin >> UserData[NumberOfLogins].FirstName;
+	cout << "Enter last name: " << endl;
+	cin >> UserData[NumberOfLogins].LastName;
+	cout << "Enter address: " << endl;
+	cin >> UserData[NumberOfLogins].Address;
+	cout << "Enter child's name: " << endl;
+	cin >> UserData[NumberOfLogins].ChildName;
+	cout << "Enter child's age: " << endl;
+	cin >> UserData[NumberOfLogins].YearOfChild;
+	while (UserData[NumberOfLogins].YearOfChild < 1 || UserData[NumberOfLogins].YearOfChild > 5)
+	{
+		cout << "Your child's  must be between 1 and 5 years" << endl;
+		cout << "Please, enter the child's age again:" << endl;
+		cin >> UserData[NumberOfLogins].YearOfChild;
+	}
 }
+
 void ModifyUser(int& NumberOfLogins, USERDATA UserData[])
 {
 	int TempId;
@@ -195,4 +214,5 @@ int main()
 	LOGINCREDENTIALS LoginCreds[10];
 	USERDATA UsData[10];
 	int NumberOfLogins = 1;
+	InputUserData(NumberOfLogins, UsData, LoginCreds);
 }
