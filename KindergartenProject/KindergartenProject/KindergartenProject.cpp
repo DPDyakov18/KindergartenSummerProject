@@ -287,6 +287,9 @@ void ShowParentData(int& NumberOfLogins, USERDATA UserData[])
 
 void AdminMenu(int& NumberOfLogins, USERDATA UserData[], LOGINCREDENTIALS LoginCreds[])
 {
+	cout << "1. Create user: " << endl;
+	cout << "2. Delete user: " << endl;
+	cout << "3. Modify user: " << endl;
 	int AdminMenuChoice;
 	cin >> AdminMenuChoice;
 	switch (AdminMenuChoice)
@@ -294,19 +297,28 @@ void AdminMenu(int& NumberOfLogins, USERDATA UserData[], LOGINCREDENTIALS LoginC
 	case 1:
 	{
 		CreateUser(NumberOfLogins, UserData, LoginCreds);
+		break;
 	}
 	case 2:
 	{
 		DeleteUser(NumberOfLogins, UserData);
+		break;
 	}
 	case 3:
 	{
-		cout << "Modify" << endl;
+		ModifyUser(NumberOfLogins, UserData);
+		break;
 	}
+
+	
 	}
+
 }
-void MainMenu()
+void MainMenu(int& NumberOfLogins, USERDATA UserData[], LOGINCREDENTIALS LoginCreds[])
 {
+	cout << "1. Show user data: " << endl;
+	cout << "2. Show child data: " << endl;
+	cout << "3.Show parent data: " << endl;
 	int MainMenuChoice;
 
 	cout << "Data of child: " << endl;
@@ -318,14 +330,21 @@ void MainMenu()
 	{
 	case 1:
 	{
-		cout << "Data of child: " << endl;
+		ShowUserData(NumberOfLogins, UserData);
 		break;
 	}
 	case 2:
 	{
-		cout << "Data of parents: " << endl;
+		ShowChildData(NumberOfLogins, UserData);
 		break;
 	}
+	case 3:
+	{
+		ShowParentData(NumberOfLogins, UserData);
+		break;
+	}
+
+	
 	}
 }
 
@@ -336,4 +355,5 @@ int main()
 	int NumberOfLogins = 1;
 	CreateUser(NumberOfLogins, UsData, LoginCreds);
 	ShowChildData(NumberOfLogins, UsData);
+
 }
