@@ -244,6 +244,46 @@ void ShowChildData(int& NumberOfLogins, USERDATA UserData[])
 	cout << endl;
 }
 
+void ShowParentData(int& NumberOfLogins, USERDATA UserData[])
+{
+	string TempChildName;
+	if (NumberOfLogins > 0)
+	{
+		cout << "All user's Ids:" << endl;
+		for (int i = 1; i <= NumberOfLogins; i++)
+		{
+			cout << UserData[i].LastName << endl;
+		}
+		cout << endl;
+		cout << "Enter the child's name to select the parent you want to see the data of ";
+		cin >> TempChildName;
+		bool flag = false;
+
+		for (int i = 1; i <= NumberOfLogins; i++)
+		{
+			if (TempChildName == UserData[i].ChildName)
+			{
+				cout << "Parent's first name: " << UserData[i].FirstName << endl;
+				cout << "Parent's last age: " << UserData[i].LastName << endl;
+				flag = true;
+			}
+		}
+		if (flag != true)
+		{
+			cout << "You have entered wrong or non-existand child name!" << endl;
+			cout << "Please enter new name!";
+			cout << endl;
+			cout << "Enter the id you want to see the parent's data:";
+			cin >> TempChildName;
+		}
+	}
+	else
+	{
+		cout << "There aren't any users!";
+	}
+	cout << endl;
+}
+
 
 void AdminMenu(int& NumberOfLogins, USERDATA UserData[], LOGINCREDENTIALS LoginCreds[])
 {
