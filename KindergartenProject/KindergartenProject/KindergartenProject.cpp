@@ -145,14 +145,14 @@ void ModifyUser(int& NumberOfLogins, USERDATA UserData[])
 				cout << "Enter age of a child" << endl;
 				cin >> UserData[i].YearOfChild;
 				flag = true;
-				
+
 			}
 			if (flag == true)
 			{
 				cout << "You have modified user's info!";
 			}
 		}
-		
+
 		if (flag != true)
 		{
 			cout << "You have entered wrong or non-existand id!" << endl;
@@ -231,7 +231,7 @@ void ShowChildData(int& NumberOfLogins, USERDATA UserData[])
 
 		for (int i = 1; i <= NumberOfLogins; i++)
 		{
-			if (TempLastName==UserData[i].LastName)
+			if (TempLastName == UserData[i].LastName)
 			{
 				cout << "Child's name: " << UserData[i].ChildName << endl;
 				cout << "Child's age: " << UserData[i].YearOfChild << endl;
@@ -419,12 +419,12 @@ int main()
 	int NumberOfLogins = 1;
 	bool flag = 1;
 	LoginRequest(NumberOfLogins, LoginCreds);
-	if(CheckIfAdmin(NumberOfLogins, LoginCreds) == 1)
+	if (CheckIfAdmin(NumberOfLogins, LoginCreds) == 1)
 	{
-		AdminMenu(NumberOfLogins, UsData, LoginCreds,flag);
+		AdminMenu(NumberOfLogins, UsData, LoginCreds, flag);
 	}
 	else
 	{
-		MainMenu(NumberOfLogins, UsData, LoginCreds,flag);
+		MainMenu(NumberOfLogins, UsData, LoginCreds, flag);
 	}
 }
