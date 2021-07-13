@@ -20,9 +20,9 @@ struct USERDATA
 };
 
 
-bool CheckIfAdmin(LOGINCREDENTIALS &LoginCreds)
+bool CheckIfAdmin(int& NumberOfLogins, LOGINCREDENTIALS LoginCreds[])
 {
-	if (LoginCreds.Username == "a" && LoginCreds.Password == "a")
+	if (LoginCreds[NumberOfLogins].Username == "a" && LoginCreds[NumberOfLogins].Password == "a")
 	{
 		return true;
 	}
@@ -30,12 +30,12 @@ bool CheckIfAdmin(LOGINCREDENTIALS &LoginCreds)
 }
 
 
-void LoginRequest(LOGINCREDENTIALS& LoginCreds)
+void LoginRequest(int& NumberOfLogins, LOGINCREDENTIALS LoginCreds[])
 {
 	cout << "Enter Username: " << endl;
-	cin >> LoginCreds.Username;
+	cin >> LoginCreds[NumberOfLogins].Username;
 	cout << "Enter Password: " << endl;
-	cin >> LoginCreds.Password;
+	cin >> LoginCreds[NumberOfLogins].Password;
 }
 
 
@@ -90,8 +90,11 @@ void CreateUser(int& NumberOfLogins, USERDATA UserData[], LOGINCREDENTIALS Login
 	cin >> LoginCreds[NumberOfLogins].Username;
 	cout << "Enter password: " << endl;
 	cin >> LoginCreds[NumberOfLogins].Password;
-	cout << "Enter id: " << endl;
-	cin >> UserData[NumberOfLogins].Id;
+	do
+	{
+		cout << "Enter id: " << endl;
+		cin >> UserData[NumberOfLogins].Id;
+	} while (UserData[NumberOfLogins].Id < 0);
 	cout << "Enter first name: " << endl;
 	cin >> UserData[NumberOfLogins].FirstName;
 	cout << "Enter last name: " << endl;
@@ -129,12 +132,19 @@ void ModifyUser(int& NumberOfLogins, USERDATA UserData[])
 		{
 			if (TempId == UserData[i].Id)
 			{
+				cout << "Enter id:" << endl;
 				cin >> UserData[i].Id;
+				cout << "Enter first name" << endl;
 				cin >> UserData[i].FirstName;
+				cout << "Enter last name" << endl;
 				cin >> UserData[i].LastName;
+				cout << "Enter address" << endl;
 				cin >> UserData[i].Address;
+				cout << "Enter child name" << endl;
 				cin >> UserData[i].ChildName;
+				cout << "Enter age of a child" << endl;
 				cin >> UserData[i].YearOfChild;
+				flag = true;
 				
 			}
 			if (flag == true)
@@ -284,68 +294,122 @@ void ShowParentData(int& NumberOfLogins, USERDATA UserData[])
 	cout << endl;
 }
 
-
-void AdminMenu(int& NumberOfLogins, USERDATA UserData[], LOGINCREDENTIALS LoginCreds[])
+int MainMenu(int& NumberOfLogins, USERDATA UserData[], LOGINCREDENTIALS LoginCreds[], bool flag)
 {
-	cout << "1. Create user: " << endl;
-	cout << "2. Delete user: " << endl;
-	cout << "3. Modify user: " << endl;
-	int AdminMenuChoice;
-	cin >> AdminMenuChoice;
-	switch (AdminMenuChoice)
-	{
-	case 1:
-	{
-		CreateUser(NumberOfLogins, UserData, LoginCreds);
-		break;
-	}
-	case 2:
-	{
-		DeleteUser(NumberOfLogins, UserData);
-		break;
-	}
-	case 3:
-	{
-		ModifyUser(NumberOfLogins, UserData);
-		break;
-	}
-
-	
-	}
-
-}
-void MainMenu(int& NumberOfLogins, USERDATA UserData[], LOGINCREDENTIALS LoginCreds[])
-{
-	cout << "1. Show user data: " << endl;
-	cout << "2. Show child data: " << endl;
-	cout << "3.Show parent data: " << endl;
 	int MainMenuChoice;
-
-	cout << "Data of child: " << endl;
-	cout << "Data of parents: " << endl;
-	cin >> MainMenuChoice;
-
-
-	switch (MainMenuChoice)
+	do
 	{
-	case 1:
-	{
-		ShowUserData(NumberOfLogins, UserData);
-		break;
-	}
-	case 2:
-	{
-		ShowChildData(NumberOfLogins, UserData);
-		break;
-	}
-	case 3:
-	{
-		ShowParentData(NumberOfLogins, UserData);
-		break;
-	}
+		cout << "1. Show user data: " << endl;
+		cout << "2. Show child data: " << endl;
+		cout << "3. Show parent data: " << endl;
+		cout << "4. Exit" << endl;
+		cin >> MainMenuChoice;
+		switch (MainMenuChoice)
+		{
+		case 1:
+		{
+			ShowUserData(NumberOfLogins, UserData);
+			break;
+		}
+		case 2:
+		{
+			ShowChildData(NumberOfLogins, UserData);
+			break;
+		}
+		case 3:
+		{
+			ShowParentData(NumberOfLogins, UserData);
+			break;
+		}
+		case 4:
+		{
+			cout << "Thank you for using the program!";
+			return flag = 0;
+			break;
+		}
+		default:
+		{
+			cout << "Incorrect input!" << endl;
+			cout << "Please, select a menu again!" << endl;
+		}
+		}
+	} while (flag == 1);
+}
 
-	
-	}
+int AdminMenu(int& NumberOfLogins, USERDATA UserData[], LOGINCREDENTIALS LoginCreds[], bool flag)
+{
+	int AdminMenuChoice;
+	do
+	{
+		cout << "1. Create user: " << endl;
+		cout << "2. Delete user: " << endl;
+		cout << "3. Modify user: " << endl;
+		cout << "4. Show all data of users:" << endl;
+		cout << "5. Show a child's data:" << endl;
+		cout << "6. Show data of a parent:" << endl;
+		cout << "7. Login:" << endl;
+		cout << "8. Exit program" << endl;
+		cin >> AdminMenuChoice;
+		switch (AdminMenuChoice)
+		{
+		case 1:
+		{
+			CreateUser(NumberOfLogins, UserData, LoginCreds);
+			break;
+		}
+		case 2:
+		{
+			DeleteUser(NumberOfLogins, UserData);
+			break;
+		}
+		case 3:
+		{
+			ModifyUser(NumberOfLogins, UserData);
+			break;
+		}
+		case 4:
+		{
+			ShowUserData(NumberOfLogins, UserData);
+			break;
+		}
+		case 5:
+		{
+			ShowChildData(NumberOfLogins, UserData);
+			break;
+		}
+		case 6:
+		{
+			ShowParentData(NumberOfLogins, UserData);
+			break;
+		}
+		case 7:
+		{
+			LoginRequest(NumberOfLogins, LoginCreds);
+			if (CheckIfAdmin(NumberOfLogins, LoginCreds) == 1)
+			{
+				AdminMenu(NumberOfLogins, UserData, LoginCreds, flag);
+				AdminMenuChoice = 8;
+			}
+			else
+			{
+				MainMenu(NumberOfLogins, UserData, LoginCreds, flag);
+				AdminMenuChoice = 8;
+			}
+		}
+		case 8:
+		{
+			cout << "Thank you for using the program!";
+			return flag = 0;
+			break;
+		}
+		default:
+		{
+			cout << "Incorrect input!" << endl;
+			cout << "Please, select a menu again!" << endl;
+		}
+		}
+	} while (flag == 1);
+
 }
 
 int main()
@@ -353,7 +417,14 @@ int main()
 	LOGINCREDENTIALS LoginCreds[10];
 	USERDATA UsData[10];
 	int NumberOfLogins = 1;
-	CreateUser(NumberOfLogins, UsData, LoginCreds);
-	ShowChildData(NumberOfLogins, UsData);
-
+	bool flag = 1;
+	LoginRequest(NumberOfLogins, LoginCreds);
+	if(CheckIfAdmin(NumberOfLogins, LoginCreds) == 1)
+	{
+		AdminMenu(NumberOfLogins, UsData, LoginCreds,flag);
+	}
+	else
+	{
+		MainMenu(NumberOfLogins, UsData, LoginCreds,flag);
+	}
 }
