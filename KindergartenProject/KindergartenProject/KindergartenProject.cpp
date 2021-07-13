@@ -22,7 +22,7 @@ struct USERDATA
 
 bool CheckIfAdmin(int& NumberOfLogins, LOGINCREDENTIALS LoginCreds[])
 {
-	if (LoginCreds[NumberOfLogins].Username == "a" && LoginCreds[NumberOfLogins].Password == "a")
+	if (LoginCreds[NumberOfLogins].Username.find("Admin") == 0 && LoginCreds[NumberOfLogins].Password.find("Adminpass") == 0)
 	{
 		return true;
 	}
@@ -94,15 +94,16 @@ void CreateUser(int& NumberOfLogins, USERDATA UserData[], LOGINCREDENTIALS Login
 	{
 		cout << "Enter id: " << endl;
 		cin >> UserData[NumberOfLogins].Id;
+		cin.ignore();
 	} while (UserData[NumberOfLogins].Id < 0);
 	cout << "Enter first name: " << endl;
-	cin >> UserData[NumberOfLogins].FirstName;
+	getline(cin,UserData[NumberOfLogins].FirstName);
 	cout << "Enter last name: " << endl;
-	cin >> UserData[NumberOfLogins].LastName;
+	getline(cin,UserData[NumberOfLogins].LastName);
 	cout << "Enter address: " << endl;
-	cin >> UserData[NumberOfLogins].Address;
+	getline(cin,UserData[NumberOfLogins].Address);
 	cout << "Enter child's name: " << endl;
-	cin >> UserData[NumberOfLogins].ChildName;
+	getline(cin,UserData[NumberOfLogins].ChildName);
 	cout << "Enter child's age: " << endl;
 	cin >> UserData[NumberOfLogins].YearOfChild;
 	while (UserData[NumberOfLogins].YearOfChild < 1 || UserData[NumberOfLogins].YearOfChild > 5)

@@ -1,4 +1,4 @@
 ﻿  KindergartenProject.cpp
-C:\Users\dpdyakov18\source\repos\KindergartenSummerProject\KindergartenProject\KindergartenProject\KindergartenProject.cpp(337): warning C4715: 'MainMenu': not all control paths return a value
-C:\Users\dpdyakov18\source\repos\KindergartenSummerProject\KindergartenProject\KindergartenProject\KindergartenProject.cpp(413): warning C4715: 'AdminMenu': not all control paths return a value
+C:\Users\dpdyakov18\source\repos\KindergartenSummerProject\KindergartenProject\KindergartenProject\KindergartenProject.cpp(338): warning C4715: 'MainMenu': not all control paths return a value
+C:\Users\dpdyakov18\source\repos\KindergartenSummerProject\KindergartenProject\KindergartenProject\KindergartenProject.cpp(414): warning C4715: 'AdminMenu': not all control paths return a value
   KindergartenProject.vcxproj -> C:\Users\dpdyakov18\source\repos\KindergartenSummerProject\KindergartenProject\Debug\KindergartenProject.exe
